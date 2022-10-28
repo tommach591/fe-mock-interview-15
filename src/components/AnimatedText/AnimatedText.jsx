@@ -1,39 +1,32 @@
 import "./AnimatedText.css";
-import Text from "../Text";
 import { useState, useEffect } from "react";
 
-function AnimatedText({ text }) {
+function AnimatedText({ text, animationTime }) {
   const [list, setList] = useState([]);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let newList = [...list];
-    newList.push(<Text key={count} text={text + 0} />);
-    setList(newList);
-    setCount(count + 1);
-  }, []);
-
-  useEffect(() => {
-    let pop = () => {
-      let newList = [...list];
-      newList.shift();
-      setList(newList);
-    };
-
     const interval = setInterval(() => {
       let newList = [...list];
-      newList.push(<Text key={count} text={text + newList.length} />);
-      setList(newList);
-      setCount(count + 1);
-    }, 1000);
+      newList.push(
+        <h1
+          className="Text"
+          key={count}
+          style={{ animation: `rightToLeft ${animationTime}s linear` }}
+        >
+          {text}
+        </h1>
+      );
+      if (newList.length > animationTime) newList.shift();
 
-    //window.addEventListener("animationend", pop);
+      setList(newList);
+      count < animationTime ? setCount(count + 1) : setCount(0);
+    }, 1000);
 
     return () => {
       clearInterval(interval);
-      //window.removeEventListener("animationend", pop);
     };
-  }, [list, count, text]);
+  }, [list, count, text, animationTime]);
 
   return <div className="AnimatedText">{list}</div>;
 }

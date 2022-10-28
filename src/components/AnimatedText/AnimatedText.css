@@ -1,8 +1,8 @@
 @keyframes rightToLeft {
-  from {
+  0% {
     left: 100%;
   }
-  to {
+  100% {
     left: -100%;
   }
 }
@@ -13,6 +13,4 @@
   position: absolute;
   font-size: 32px;
   white-space: nowrap;
-  margin-left: 10rem;
-  animation: rightToLeft 15s linear;
 }
