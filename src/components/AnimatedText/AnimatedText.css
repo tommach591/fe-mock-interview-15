@@ -1,0 +1,18 @@
+@keyframes rightToLeft {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+.Text {
+  left: 100%;
+  width: fit-content;
+  position: absolute;
+  font-size: 32px;
+  white-space: nowrap;
+  margin-left: 10rem;
+  animation: rightToLeft 15s linear;
+}
